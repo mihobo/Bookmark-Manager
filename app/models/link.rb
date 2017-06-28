@@ -1,3 +1,4 @@
+# app/models/link.rb
 class Link
   include DataMapper::Resource
 

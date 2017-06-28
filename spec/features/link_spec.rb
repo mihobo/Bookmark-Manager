@@ -1,3 +1,4 @@
+# spec/features/link_spec.rb
 feature 'Viewing website links' do
   scenario 'see a list of exisitng links on the homepage' do
     Link.create(url: 'http://www.google.com', title: 'Google')

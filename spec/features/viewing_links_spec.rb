@@ -1,4 +1,4 @@
-#spec/features/viewing_links_spec.rb
+# spec/features/viewing_links_spec.rb
 feature 'Viewing links' do
   before(:each) do
     Link.create(url: 'http://www.bbc.co.uk', title: 'BBC', tags:[Tag.first_or_create(name: 'News')])
