@@ -4,6 +4,7 @@ feature 'Save a website' do
     visit('/links/new')
     fill_in 'url', with: 'http://www.google.com'
     fill_in 'title', with: 'Google'
+    fill_in 'tags', with: 'Browsers'
     click_button('Add link')
     expect(current_path).to eq('/links')
 
