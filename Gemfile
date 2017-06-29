@@ -6,6 +6,7 @@ gem 'data_mapper'
 gem 'database_cleaner'
 gem 'dm-migrations'
 gem 'dm-postgres-adapter'
+gem 'rake'
 gem 'sinatra'
 gem 'thin'
 
