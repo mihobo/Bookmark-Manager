@@ -28,27 +28,16 @@ class BookmarkManager < Sinatra::Base
 
   get '/tags/:name' do
     tag = Tag.first(name: params[:name])
-    @user = session[:email]
     @links = tag ? tag.links : []
     erb :'links/index'
   end
 
-  get '/user/signup' do
-    erb :'user/signup'
+  get '/user/new' do
+    erb :'user/new'
   end
 
   post '/user' do
-    user = User.create(email: params[:email], password: params[:password])
-    session[:user_id] = user.id
-    redirect to '/links'
-  end
-
-  get '/user/login' do
-    erb :'user/login'
-  end
-
-  post '/user/login' do
-    User.create(email: params[:email], password: params[:password], confirm_password: params[:confirm_password])
+    user = User.create(email: params[:email], password: params[:password], password_confirmation: params[:confirm_password])
     session[:user_id] = user.id
     redirect to '/links'
   end
