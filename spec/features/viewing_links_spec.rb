@@ -8,7 +8,7 @@ feature 'Viewing links' do
       expect(page).to have_content('Google')
     end
   end
-  
+
   before(:each) do
     Link.create(url: 'http://www.bbc.co.uk', title: 'BBC', tags: [Tag.first_or_create(name: 'News')])
     Link.create(url: 'http://www.google.com', title: 'Google', tags: [Tag.first_or_create(name: 'Browser')])

@@ -1,10 +1,9 @@
+require_relative '../web_helper'
+
 feature 'make a new user account' do
-  scenario ' sign up form' do
-    visit('/register')
-    fill_in 'email', with: 'joebloggs@bloggs.com'
-    fill_in 'password', with: 'password123'
-    click_button 'Submit'
+  scenario 'sign up form' do
+    new_user
     expect(page).to have_content('Welcome joebloggs@bloggs.com')
-    expect(User.count).to eq 1
+    expect { new_user }.to change(User, :count).by(1)
   end
 end

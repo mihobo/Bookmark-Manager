@@ -6,7 +6,7 @@ require_relative 'data_mapper_setup'
 
 class BookmarkManager < Sinatra::Base
   enable :sessions
-  set :session_secret, 'i like cookies lol xo'
+  set :session_secret, 'shhhh secret'
 
   get '/links' do
     @links = Link.all
@@ -20,7 +20,7 @@ class BookmarkManager < Sinatra::Base
   post '/links' do
     link = Link.new(url: params[:url], title: params[:title])
     params[:tags].split(', ').each do |tag|
-      link.tags << Tag.first_or_create(name:tag)
+      link.tags << Tag.first_or_create(name: tag)
     end
     link.save
     redirect to '/links'
@@ -33,12 +33,22 @@ class BookmarkManager < Sinatra::Base
     erb :'links/index'
   end
 
-  get '/register' do
-    erb :'register'
+  get '/user/signup' do
+    erb :'user/signup'
   end
 
-  post '/register' do
+  post '/user' do
     user = User.create(email: params[:email], password: params[:password])
+    session[:user_id] = user.id
+    redirect to '/links'
+  end
+
+  get '/user/login' do
+    erb :'user/login'
+  end
+
+  post '/user/login' do
+    User.create(email: params[:email], password: params[:password], confirm_password: params[:confirm_password])
     session[:user_id] = user.id
     redirect to '/links'
   end
